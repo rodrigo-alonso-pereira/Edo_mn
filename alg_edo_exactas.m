@@ -1,8 +1,8 @@
 syms x y c
 
 % Se define M y N (Ingresar EDO)
-m = 2*x*y^2-3*y^3;
-n = 7-3*x*y^2;
+m = x^2+y^2;
+n = -x*y;
 
 % Exacta?
 diff_my = diff(m,y)
@@ -36,13 +36,20 @@ else
     ec_3 = simplify(ec_1/n)
     
     % Opcion elegida se aplica a Factor Integrante
-    f_i = exp(-int(ec_2, y))
+    % Verificar si usar ec_2 o ec_3
+    f_i = simplify(exp(-int(ec_3, y)))
     
     m2 = simplify(m*f_i)
     n2 = simplify(n*f_i)
 
     diff_m2y = diff(m2,y)
     diff_n2x = diff(n2,x)
+
+    if diff_m2y == diff_n2x
+        fprintf("La EDO es exacta")
+    else
+        fprintf("Revisar porque la EDO No dio exacta")
+    end
 
     % Integracion de M2
     int_m2x = int(m2,x)
