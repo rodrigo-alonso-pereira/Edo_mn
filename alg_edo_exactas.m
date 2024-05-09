@@ -35,12 +35,14 @@ else
     ec_2 = simplify(ec_1/m)
     ec_3 = simplify(ec_1/n)
     
-    % Opcion elegida se aplica a Factor Integrante
-    % Verificar si usar ec_2 o ec_3
-    f_i = simplify(exp(-int(ec_3, y)))
+    % Factor Integrante
+    % Si se uso M, se aplica fi_m.
+    % Si se uso N, se aplica fi_n
+    fi_m = simplify(exp(-int(ec_2, y)))
+    fi_n = simplify(exp(int(ec_3, x)))
     
-    m2 = simplify(m*f_i)
-    n2 = simplify(n*f_i)
+    m2 = simplify(m*fi_n)
+    n2 = simplify(n*fi_n)
 
     diff_m2y = diff(m2,y)
     diff_n2x = diff(n2,x)
